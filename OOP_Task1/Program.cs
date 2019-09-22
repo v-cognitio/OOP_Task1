@@ -91,7 +91,7 @@ namespace OOP_Task1
 
         static class Part3
         {
-            static int resolveRomanian(char c)
+            static int resolveRoman(char c)
             {
                 switch (c)
                 {
@@ -116,14 +116,18 @@ namespace OOP_Task1
             }
             public static void DoIt()
             {   
-                Console.Write("Enter Romanian number: ");
+                Console.Write("Enter Roman number: ");
                 string number = Console.ReadLine();
-                int last = 0, answer = 0, curr;
+                int answer = 0, curr, next = 0;
                 for (int i = 0; i < number.Length; ++i)
                 {
                     try
                     {
-                        curr = resolveRomanian(number[i]);
+                        curr = resolveRoman(number[i]);
+                        if (i < number.Length - 1)
+                        {
+                            next = resolveRoman(number[i + 1]);
+                        }
                     }
                     catch (Exception e)
                     {
@@ -131,30 +135,15 @@ namespace OOP_Task1
                         return;
                     }
 
-                    if (curr < last)
+                    if (i < number.Length - 1 && curr < next)
                     {
-                        answer += last;
-                        last = curr;
-                    }
-                    else if (curr > last)
-                    {
-                        if (last != 0)
-                        {
-                            answer += curr - last;
-                            last = 0;
-                        }
-                        else
-                        {
-                            last = curr;
-                        }
+                        answer -= curr;
                     }
                     else
                     {
-                        answer += last + curr;
-                        last = 0;
+                        answer += curr;
                     }
                 }
-                answer += last;
 
                 Console.WriteLine(answer);
             }
