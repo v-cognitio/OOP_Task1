@@ -91,7 +91,7 @@ namespace OOP_Task1
 
         static class Part3
         {
-            static int resolveRomanian(char c)
+            static int resolveRoman(char c)
             {
                 switch (c)
                 {
@@ -110,20 +110,20 @@ namespace OOP_Task1
                     case 'M':
                         return 1000;
                     default:
-                        throw new Exception("Can not resolve Romanian char");
+                        throw new Exception("Can not resolve Roman char");
                     
                 }
             }
             public static void DoIt()
             {   
-                Console.Write("Enter Romanian number: ");
+                Console.Write("Enter Roman number: ");
                 string number = Console.ReadLine();
                 int last = 0, answer = 0, curr;
                 for (int i = 0; i < number.Length; ++i)
                 {
                     try
                     {
-                        curr = resolveRomanian(number[i]);
+                        curr = resolveRoman(number[i]);
                     }
                     catch (Exception e)
                     {
